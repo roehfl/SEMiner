@@ -1,0 +1,5 @@
+properties:
+  google:
+    url: https://www.googleapis.com/customsearch/v1?q=
+    apiKey: AIzaSyDC7wxu1PBFuJnFV9OgOYbcbzqjGWH_na4
+    cx: 05552f6cdf5784635
