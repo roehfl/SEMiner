@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration scan="true" scanPeriod="5minutes">
+    <property name="LOG_DIR" value="logs"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+    <!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <file>${LOG_DIR}/server.log</file>-->
+    <!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
+    <!--            <Pattern>-->
+    <!--                [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n-->
+    <!--            </Pattern>-->
+    <!--        </layout>-->
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--            <fileNamePattern>-->
+    <!--                <file>${LOG_DIR}/server.%d{yyyy-MM-dd}.log</file>-->
+    <!--            </fileNamePattern>-->
+    <!--            <maxHistory>30</maxHistory>-->
+    <!--        </rollingPolicy>-->
+    <!--    </appender>-->
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.hibernate" level="INFO"/>
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</Configuration>

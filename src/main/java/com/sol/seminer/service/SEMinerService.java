@@ -1,10 +1,11 @@
 package com.sol.seminer.service;
 
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
-@Service
+
 public interface SEMinerService {
-    List<Object> search(String engineName, String keyword);
+    Flux search(String engineName, String keyword);
 }

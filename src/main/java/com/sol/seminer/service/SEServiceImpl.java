@@ -1,12 +1,16 @@
 package com.sol.seminer.service;
 
 import com.sol.seminer.config.Properties;
+import com.sol.seminer.dto.GoogleSearchItem;
 import com.sol.seminer.dto.GoogleSearchResponse;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class SEServiceImpl implements SEMinerService{
 
     private final Properties properties;
@@ -18,17 +22,17 @@ public class SEServiceImpl implements SEMinerService{
     }
 
     @Override
-    public List<Object> search(String engineName, String keyword) {
+    public Flux search(String engineName, String keyword) {
         if (engineName.equals("google")) {
             String apiKey = properties.getGoogle().getApiKey();
             String cx = properties.getGoogle().getCx();
             String url = properties.getGoogle().getUrl() + keyword + "&key=" + apiKey + "&cx=" + cx;
-            webClient.get()
+            return webClient.get()
                     .uri(url)
                     .retrieve()
-                    .bodyToMono(GoogleSearchResponse.class)  // JSON -> DTO 변환
+                    .bodyToFlux(GoogleSearchResponse.class)  // JSON -> DTO 변환
                     .map(response -> response.getItems().stream()
-                            .map(GoogleSearchResponse.GoogleSearchItem::getLink)
+                            .map(GoogleSearchItem::getLink)
                             .collect(Collectors.toList())
                     );
         } else {

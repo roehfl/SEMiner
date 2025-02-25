@@ -1,1 +1,5 @@
-spring.application.name=SEMiner
+spring:
+  application:
+    name: SEMiner
+  config:
+    import: classpath:properties.yml
